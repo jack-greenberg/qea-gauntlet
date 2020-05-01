@@ -1,4 +1,4 @@
-classdef NEATO
+classdef NEATO < handle
     %NEATO Class object for controlling NEATOs
     %   Detailed explanation goes here
     
@@ -7,6 +7,7 @@ classdef NEATO
         scanner
         stopMessage
         message
+        wheel_speed
     end
     
     methods(Static)
@@ -33,13 +34,36 @@ classdef NEATO
 
             % Create a message for moving the NEATO
             obj.message = rosmessage(obj.pubvel);
+            
+            obj.wheel_speed = .2;
         end
         
         function [r, theta] = LIDAR_scan(obj)
-            disp(obj.scanner)
+            % Scans surroundings using LIDAR scanner and returns
+            % r, theta where r is the distance of the object
+            % and theta is the angle in radians
+
             scan_message = receive(obj.scanner);
             r = scan_message.Ranges(1:end-1);
             theta = deg2rad([0:359]');
+            r = r(r~=0);
+            theta = theta(r~=0);
+        end
+        
+        function travel(obj, distance)
+            start = rostime('now');
+            
+            obj.message = [obj.wheel_speed, obj.wheel_speed];
+            send(obj.pubvel, obj.message);
+            
+            while (1)
+                current = rostime('now');
+                elapsed = current - start;
+                
+                if elapsed.seconds >= distance/obj.wheel_speed
+                    break
+                end
+            end
         end
         
         function destroy()
