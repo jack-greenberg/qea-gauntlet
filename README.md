@@ -4,13 +4,19 @@ Jack Greenberg
 
 <details>
     <summary style="font-weight: bold;">Table of Contents</summary>
-    - [The Hero](#the-hero)
-    	- [The Challenge](#the-challenge)
-    	- [The World](#the-world)
-    - [Some Graphs](#some-graphs)
-    - [The Code](#the-code)
-    	- [RANSAC](#RANSAC)
-    	- [Gradient Descent](#gradient-descent)
+    <ul>
+        <li><a href="#the-hero">The Hero</a></li>
+        <ul>
+            <li><a href="#the-challenge">The Challenge</a></li>
+            <li><a href="#the-world">The World</a></li>
+        </ul>
+        <li><a href="#some-graphs">Some Graphs</a></li>
+        <li><a href="#some-code">Some Code</a></li>
+        <ul>
+            <li><a href="#ransac">RANSAC</a></li>
+            <li><a href="#gradient-descent">Gradient Descent</a></li>
+        </ul>
+    </ul>
 </details>
 
 
