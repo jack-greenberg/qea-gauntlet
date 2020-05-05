@@ -1,7 +1,5 @@
 % Identifies one feature of a set of points
 function [line, circle, outliers] = RANSAC(X, n, d)
-    disp(size(X));
-    
     line = []; circle = [];
     
     % Current best set of inliers
@@ -21,7 +19,7 @@ function [line, circle, outliers] = RANSAC(X, n, d)
         [line_inliers3, biggestGap3] = lineDetector(X, d, P2, P3);
         [circle_inliers, xc, yc, r, biggestGapC] = circleDetector(X, d, P1, P2, P3);
         
-        if sum(line_inliers1) > size(bestInlierSet, 1) && biggestGap1 < .2 && sum(line_inliers1) > 10 % If the first line is better than our current best
+        if sum(line_inliers1) > size(bestInlierSet, 1) && biggestGap1 < .25 && sum(line_inliers1) > 5 % If the first line is better than our current best
             bestInlierSet = X(line_inliers1,:);
             bestInlierSetIndex = line_inliers1;
             bestInlierType = 'line';
@@ -38,28 +36,6 @@ function [line, circle, outliers] = RANSAC(X, n, d)
                 bestInlierSetIndex = [];
                 continue
             end
-%         elseif sum(line_inliers2) > size(bestInlierSet, 1) && biggestGap2 < .2 % If second line is better
-%             bestInlierSet = X(line_inliers2,:);
-%             bestInlierSetIndex = line_inliers2;
-%             bestInlierType = 'line';
-%             
-%             V = P3 - P1;
-%             V_hat = V./norm(V);
-%             distances = X - P3;
-%             projectedCoordinate = distances(line_inliers2, :)*V_hat';
-%             bestEndPoints = [min(projectedCoordinate); max(projectedCoordinate)]*V_hat + repmat(candidates(2, :), [2, 1]);
-%             
-%         elseif sum(line_inliers3) > size(bestInlierSet, 1) && biggestGap3 < .2 % If third line is better
-%             bestInlierSet = X(line_inliers3,:);
-%             bestInlierSetIndex = line_inliers3;
-%             bestInlierType = 'line';
-%             
-%             V = P3 - P2;
-%             V_hat = V./norm(V);
-%             distances = X - P3;
-%             projectedCoordinate = distances(line_inliers3, :)*V_hat';
-%             bestEndPoints = [min(projectedCoordinate); max(projectedCoordinate)]*V_hat + repmat(candidates(2, :), [2, 1]);
-            
         elseif sum(circle_inliers) > size(bestInlierSet, 1) && biggestGapC < 0.01 && sum(circle_inliers) > 3 % If circle is better
             inlier_points = X(circle_inliers,:);
             continue_flag = 0;
