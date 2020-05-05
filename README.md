@@ -27,39 +27,51 @@ The objective of this task is to get the NEATO to navigate a playpen until it re
 
 ### The Hero
 
-<img src="neato-blank.png" width="50%" />
+<p align="center"><img src="graphics/neato-blank.png" width="50%" /></p>
 
 The NEATO is a differential drive, two-wheeled robot that was simulated using a series group of docker containers, and interfaced with using the ROS (Robotic Operating System) toolbox in MATLAB.
 
 ### The World
 
-<img src="gauntlet.png" width="50%" />
+<p align="center"><img src="graphics/gauntlet.png" width="50%" /></p>
 
 
 
 ## Some Graphs
 
-<img src="./pen-map.png" />
+<p align="center"><img src="graphics/pen-map.png" /></p>
 
 <p align="center">Map of the Gauntlet as seen by the NEATO's LIDAR scanner, with features detected by the RANSAC algorithm.</p>
 
 
 
-<img src="./contour-map.png" />
+<p align="center"><img src="graphics/contour-map.png" /></p>
 
 <p align="center">Gauntlet map with contour lines shown.</p>
 
 
 
-<img src="./vector-map.png" />
+<p align="center"><img src="graphics/vector-map.png" /></p>
 
 <p align="center">Gauntlet map with vector field shown.</p>
 
 
 
-<img src="./planned-path.png" />
+<p align="center"><img src="graphics/planned-path.png" /></p>
 
 <p align="center">Planned path of the NEATO at the beginning. This will update as the NEATO progesses forward and generates new LIDAR scans.</p>
+
+
+
+<p align="center"><img src="graphics/NEATO-path.png" /></p>
+
+<p align="center">Final path of the NEATO.</p>
+
+
+
+<p align="center"><img src="graphics/composite-plot.png" /></p>
+
+<p align="center">Final composite map of the Gauntlet in the global frame (NEATO's odometry frame, with origin at (0,0) and x and y axes.</p>
 
 
 
