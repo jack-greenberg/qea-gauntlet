@@ -23,10 +23,7 @@ Jack Greenberg
         </ul>
     </ul>
 </details>
-
-
-
-
+**[Click here to watch the final video.](https://youtu.be/NQd-fZsqmDU)**
 
 ## The Challenge
 
@@ -262,3 +259,4 @@ function travel(distance)
 end
 ```
 
+In the end, the NEATO took approximately 45 seconds to reach its goal. It's slowness is due in part to the slow wheel velocity of 0.2 m/s, and in part because it was doing so much computational work in between each movement.
