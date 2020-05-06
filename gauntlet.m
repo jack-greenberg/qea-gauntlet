@@ -1,6 +1,9 @@
-function gauntlet()
+function [sources, sinks] = gauntlet()
     close all
     global bump_sub pubvel stopMessage odom_sub
+    
+    sources = [];
+    sinks = [];
     
     init_NEATO();
     
@@ -62,6 +65,21 @@ function gauntlet()
                 numeric_map  = numeric_map  + createLineSource(XX, YY, line);
                 
                 p = [p; plot(line(:,1), line(:,2), '-rs', 'LineWidth', 2)];
+                
+                
+                
+
+                length = norm(line(1,:) - line(2,:));
+                spacing = linspace(0, 1, ceil(length * 25));
+
+                P1 = line(1,:); P2 = line(2,:);
+
+                for n=1:size(spacing, 2)
+                    point = P1 + spacing(n)*(P2 - P1);
+                    sources = [sources; point];
+                end
+                
+                
             end
             
             if ~isempty(circle) % If RANSAC gave us a circle
@@ -70,9 +88,20 @@ function gauntlet()
                 
                 c = viscircles(circle(1:2), circle(3), 'Color', 'green', 'LineWidth', 2);
                 p = [p; c];
+                
+                
+                
+                for theta = 0:0.05*pi:2*pi
+                    a = r*cos(theta) + circle(1);
+                    b = r*sin(theta) + circle(2);
+
+                    sinks = [sinks; a, b];
+                end
             end
             drawnow
         end
+        
+        return;
         
         %%% MOVE
         % tf = rostf;
