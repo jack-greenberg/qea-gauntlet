@@ -23,7 +23,8 @@ Jack Greenberg
         </ul>
     </ul>
 </details>
-[Click here to watch the final video.](https://youtu.be/NQd-fZsqmDU)
+
+<a href="https://youtu.be/NQd-fZsqmDU">Click here to watch the final video.</a>
 
 ## The Challenge
 
